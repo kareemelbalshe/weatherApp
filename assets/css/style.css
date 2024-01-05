@@ -1,0 +1,917 @@
+/*-----------------------------------*\
+  #style.css
+\*-----------------------------------*/
+
+/**
+ * copyright 2023 KareemElbalshy
+ */
+
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+:root {
+  --primary: #b5a1e5;
+  --on-primary: #100e17;
+  --background: #131214;
+  --on-background: #eae6f2;
+  --surface: #1d1c1f;
+  --on-surface: #dddae5;
+  --on-surface-variant: #7b7980;
+  --on-surface-variant-2: #b9b6bf;
+  --outline: #3e3d40;
+  --bg-aqi-1: #89e589;
+  --on-bg-aqi-1: #1f331f;
+  --bg-aqi-2: #e5dd89;
+  --on-bg-aqi-2: #33311f;
+  --bg-aqi-3: #e5c089;
+  --on-bg-aqi-3: #332b1f;
+  --bg-aqi-4: #e58989;
+  --on-bg-aqi-4: #331f1f;
+  --bg-aqi-5: #e589b7;
+  --on-bg-aqi-5: #331f29;
+  --white: hsl(0, 0%, 100%);
+  --white-alpha-4: hsla(0, 0%, 100%, 0.04);
+  --white-alpha-8: hsla(0, 0%, 100%, 0.08);
+  --black-alpha-10: hsla(0, 0%, 0%, 0.1);
+
+  --gradient-1: linear-gradient(
+    180deg,
+    hsla(270, 5%, 7%, 0) 0%,
+    hsla(270, 5%, 7%, 0.8) 65%,
+    hsl(270, 5%, 7%) 100%
+  );
+  --gradient-2: linear-gradient(
+    180deg,
+    hsla(260, 5%, 12%, 0) 0%,
+    hsla(260, 5%, 12%, 0.8) 65%,
+    hsl(260, 5%, 12%) 100%
+  );
+
+  --ff-nunito-sans: "Nunito Sans", sans-serif;
+
+  --heading: 5.6rem;
+  --title-1: 2rem;
+  --title-2: 1.8rem;
+  --title-3: 1.6rem;
+  --body-1: 2.2rem;
+  --body-2: 2rem;
+  --body-3: 1.6rem;
+  --label-1: 1.4rem;
+  --label-2: 1.2rem;
+
+  --weight-regular: 400;
+  --weight-semiBold: 600;
+
+  --shadow-1: 0px 1px 3px hsla(0, 0%, 0%, 0.5);
+  --shadow-2: 0px 3px 6px hsla(0, 0%, 0%, 0.4);
+
+  --radius-28: 28px;
+  --radius-16: 16px;
+  --radius-pill: 500px;
+  --radius-circle: 50%;
+
+  --transition-short: 100ms ease;
+}
+
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+a,
+img,
+span,
+input,
+button {
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  height: auto;
+}
+input,
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+}
+input {
+  width: 100%;
+}
+button {
+  cursor: pointer;
+}
+sub {
+  vertical-align: baseline;
+}
+sup {
+  vertical-align: top;
+}
+sub,
+sup {
+  font-size: 0.75em;
+}
+html {
+  font-family: var(--ff-nunito-sans);
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--background);
+  color: var(--on-background);
+  font-size: var(--body-3);
+  overflow: hidden;
+}
+:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+::selection {
+  background-color: var(--white-alpha-8);
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-slider-thumb {
+  background-color: var(--white-alpha-8);
+  border-radius: var(--radius-pill);
+}
+/*-----------------------------------*\
+  #MATERIAL ICON
+\*-----------------------------------*/
+@font-face {
+  font-family: "Material Symbols Rounded";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/material-symbol-rounded.woff2) format("woff2");
+}
+.m-icon {
+  font-family: "Material Symbols Rounded";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2.4rem;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  height: 1em;
+  width: 1em;
+  overflow: hidden;
+}
+/*-----------------------------------*\
+  #REUSED STYLE
+\*-----------------------------------*/
+.container {
+  max-width: 1600px;
+  width: 100%;
+  margin-inline: auto;
+  padding: 16px;
+}
+.iconBtn {
+  background-color: var(--white-alpha-8);
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-circle);
+}
+.hasState {
+  position: relative;
+}
+.hasState:hover {
+  box-shadow: var(--shadow-1);
+}
+.hasState:is(:focus, :focus-visible) {
+  box-shadow: none;
+}
+.hasState::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  clip-path: circle(100% at 50% 50%);
+  transition: var(--transition-short);
+}
+.hasState:hover::before {
+  background-color: var(--white-alpha-4);
+}
+.hasState:is(:focus, :focus-visible)::before {
+  background-color: var(--white-alpha-8);
+  animation: ripple 250ms ease forwards;
+}
+@keyframes ripple {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+  }
+  100% {
+    clip-path: circle(100% at 50% 50%);
+  }
+}
+.btnPrimary {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  height: 48px;
+  line-height: 48px;
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-inline: 16px;
+  border-radius: var(--radius-pill);
+}
+.btnPrimary .span {
+  font-weight: var(--weight-semiBold);
+}
+.btnPrimary[disabled] {
+  background-color: var(--outline);
+  color: var(--on-surface-variant);
+  cursor: not-allowed;
+}
+.btnPrimary[disabled]::before {
+  display: none;
+}
+.card {
+  background-color: var(--surface);
+  color: var(--on-surface);
+}
+.cardLg {
+  border-radius: var(--radius-28);
+  padding: 20px;
+}
+.cardSm {
+  padding: 16px;
+  border-radius: var(--radius-16);
+}
+.heading {
+  color: var(--white);
+  font-size: var(--heading);
+  line-height: 1.1;
+}
+.title-1 {
+  font-size: var(--title-1);
+}
+.title-2 {
+  font-size: var(--title-2);
+  margin-block-end: 12px;
+}
+.title-3 {
+  font-size: var(--title-3);
+  font-weight: var(--weight-semiBold);
+}
+.body-1 {
+  font-size: var(--body-1);
+}
+.body-2 {
+  font-size: var(--body-2);
+  font-weight: var(--weight-semiBold);
+}
+.body-3 {
+  font-size: var(--body-3);
+}
+.label-1 {
+  font-size: var(--label-1);
+}
+.label-2 {
+  font-size: var(--label-2);
+}
+.fadeIn{
+  animation: fadeIn 250ms ease forwards;
+}
+@keyframes fadeIn {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+.header .btnPrimary .span {
+  display: none;
+}
+.logo img {
+  width: 150px;
+}
+.header .container,
+.headerActions {
+  display: flex;
+  align-items: center;
+}
+.header .container {
+  justify-content: space-between;
+}
+.headerActions {
+  gap: 16px;
+}
+.header .btnPrimary {
+  padding-inline: 12px;
+}
+.searchView {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  background-color: var(--surface);
+  color: var(--on-surface);
+  clip-path: circle(4% calc(100% - 102px) 5%);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 4;
+  transition: clip-path 500ms ease;
+}
+.searchView.active {
+  opacity: 1;
+  visibility: visible;
+  clip-path: circle(130% at 73% 5%);
+}
+.searchWrapper {
+  position: relative;
+  border-block-end: 1px solid var(--outline);
+}
+.searchWrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--on-surface);
+  border-block-start-color: transparent;
+  border-radius: var(--radius-circle);
+  animation: loading 500ms linear infinite;
+  display: none;
+}
+@keyframes loading {
+  0% {
+    transform: translateY(-50%) rotate(0);
+  }
+  100% {
+    transform: translateY(-50%) rotate(1turn);
+  }
+}
+.searchWrapper:has(.searching)::before {
+  display: block;
+}
+.searchField {
+  height: 80px;
+  line-height: 80px;
+  padding-inline: 56px 16px;
+  outline: none;
+}
+.searchField::placeholder {
+  color: var(--on-surface-variant-2);
+}
+.searchField::-webkit-scrollbar-button {
+  display: none;
+}
+.icon{
+  width: 47px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-circle);
+  background-color: var(--background);
+}
+.searchWrapper .leading-icon {
+  position: absolute;
+  top: 50%;
+  left: 28px;
+  transform: translate(-50%, -50%);
+}
+.searchWrapper > .m-icon {
+  display: none;
+}
+.searchWrapper .iconBtn {
+  background-color: transparent;
+  box-shadow: none;
+}
+.searchView .viewList {
+  padding-block: 8px 16px;
+}
+.searchView .viewItem {
+  position: relative;
+  height: 56px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  padding-inline: 16px 24px;
+}
+.searchView .viewItem :is(.m-icon, .itemSubtitle) {
+  color: var(--on-surface-variant);
+}
+.searchView .viewItem .itemLink {
+  position: absolute;
+  inset: 0;
+  box-shadow: none;
+}
+/*-----------------------------------*\
+  #MAIN
+\*-----------------------------------*/
+main {
+  height: calc(100vh - 80px);
+  height: calc(100svh - 80px);
+  overflow: hidden;
+}
+article.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-y: overlay;
+}
+article.container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+article.container:is(:hover, :focus-within)::-webkit-slider-thumb {
+  background-color: var(--white-alpha-8);
+}
+article.container::-webkit-scrollbar-button {
+  height: 10px;
+}
+article .container::before {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-image: var(--gradient-1);
+  pointer-events: none;
+  z-index: 1;
+}
+.section:not(:last-child) {
+  margin-block-end: 16px;
+}
+/*-----------------------------------*\
+  #CURRENT WEATHER
+\*-----------------------------------*/
+.currentWeatherCard .weapper {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.currentWeatherCard .weatherIcon {
+  margin-inline: auto;
+}
+.currentWeatherCard > .body-3 {
+  text-transform: capitalize;
+}
+.currentWeatherCard .metaList {
+  margin-block-start: 16px;
+  padding-block-start: 16px;
+  border-block-start: 1px solid var(--outline);
+}
+.currentWeatherCard .metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.currentWeatherCard .metaItem:not(:last-child) {
+  margin-block-end: 12px;
+}
+.currentWeatherCard .metaText {
+  color: var(--on-surface-variant);
+}
+/*-----------------------------------*\
+  #HIGHLIGHTS
+\*-----------------------------------*/
+.forecastCard .title-2 {
+  margin-block-end: 0;
+}
+.forecastCard :is(.cardItem, .iconWrapper) {
+  display: flex;
+  align-items: center;
+}
+.forecastCard .cardItem:not(:last-child) {
+  margin-block-end: 12px;
+}
+.forecastCard .iconWrapper {
+  gap: 8px;
+}
+.forecastCard .label-1 {
+  color: var(--on-surface-variant);
+  font-weight: var(--weight-semiBold);
+}
+.forecastCard .cardItem > .label-1 {
+  width: 100%;
+  text-align: right;
+}
+/*-----------------------------------*\
+  #HOURLY FORECAS
+\*-----------------------------------*/
+.highlights .m-icon {
+  font-size: 3.2rem;
+}
+.highlightList {
+  display: grid;
+  gap: 20px;
+}
+.highlightList .title-3 {
+  color: var(--on-surface-variant);
+  margin-block-end: 20px;
+}
+.highlights.cardSm {
+  border-color: var(--black-alpha-10);
+  position: relative;
+}
+.highlightCard :is(.wrapper, .cardList, .cardItem) {
+  display: flex;
+  align-items: center;
+}
+.highlightCard .wrapper {
+  justify-content: space-between;
+  gap: 16px;
+}
+.highlightCard .cardList {
+  flex-wrap: wrap;
+  flex-grow: 1;
+  row-gap: 8px;
+}
+.highlightCard .cardItem {
+  width: 50%;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.highlightCard .label-1 {
+  color: var(--on-surface-variant);
+}
+.badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 2px 12px;
+  border-radius: var(--radius-pill);
+  font-weight: var(--weight-semiBold);
+  cursor: help;
+}
+.badge.aqi-1 {
+  background-color: var(--bg-aqi-1);
+  color: var(--on-bg-aqi-1);
+}
+.badge.aqi-2 {
+  background-color: var(--bg-aqi-2);
+  color: var(--on-bg-aqi-2);
+}
+.badge.aqi-3 {
+  background-color: var(--bg-aqi-3);
+  color: var(--on-bg-aqi-3);
+}
+.badge.aqi-4 {
+  background-color: var(--bg-aqi-4);
+  color: var(--on-bg-aqi-4);
+}
+.badge.aqi-5 {
+  background-color: var(--bg-aqi-5);
+  color: var(--on-bg-aqi-5);
+}
+.highlightCard.two .cardItem {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.highlightCard.two .label-1 {
+  margin-block-end: 4px;
+}
+/*-----------------------------------*\
+  #FORECAST
+\*-----------------------------------*/
+.sliderContainer {
+  overflow-x: auto;
+  margin-inline: -16px;
+}
+.sliderContainer::-webkit-scrollbar {
+  display: none;
+}
+.sliderList {
+  display: flex;
+  gap: 12px;
+}
+.sliderList:first-child {
+  margin-block-end: 16px;
+}
+.sliderList::before,
+.sliderList::after {
+  content: "";
+  min-width: 4px;
+}
+.sliderItem {
+  min-width: 110px;
+  flex: 1 1 100%;
+}
+.sliderCard {
+  text-align: center;
+}
+.sliderItem .weatherIcon {
+  margin-inline: auto;
+  margin-block: 12px;
+}
+/*-----------------------------------*\
+  #LOADING
+\*-----------------------------------*/
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background);
+  /* display: grid; */
+  place-items: center;
+  z-index: 1;
+  display: none;
+}
+.loading::before {
+  content: "";
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--on-background);
+  border-radius: var(--radius-circle);
+  border-block-start-color: transparent;
+  animation: loading 500ms linear infinite;
+}
+/*-----------------------------------*\
+  #ERROR SECTION
+\*-----------------------------------*/
+.errorContent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  background-color: var(--background);
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 8;
+  display: none;
+}
+.errorContent .btnPrimary {
+  margin-block-start: 20px;
+}
+/*-----------------------------------*\
+  #FOOTER
+\*-----------------------------------*/
+.footer,
+.footer .body-3:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.footer {
+  color: var(--on-surface-variant);
+  text-align: center;
+  gap: 12px 24px;
+  margin-block-start: 28px;
+}
+.fadeIn .footer {
+  display: flex;
+}
+.footer .body-3:last-child {
+  gap: 6px;
+}
+/*-----------------------------------*\
+  #MEDIA QUERIES
+\*-----------------------------------*/
+@media (min-width: 768px) {
+  .container {
+    padding: 24px;
+  }
+  .title-1 {
+    --title-1: 2.4rem;
+  }
+  .section > .title-2 {
+    margin-block-end: 16px;
+  }
+  .cardLg {
+    padding: 24px;
+  }
+  .cardSm {
+    padding: 20px;
+    display: grid;
+    grid-template-rows: min-content 1fr;
+  }
+  .badge {
+    top: 0;
+    right: 25px;
+  }
+
+  .headerActions {
+    gap: 24px;
+  }
+  .header .btnPrimary {
+    padding-inline: 16px 24px;
+  }
+  .header .btnPrimary .span {
+    display: block;
+  }
+  .searchView {
+    clip-path: circle(3% at calc(100% - 273px) 6%);
+  }
+
+  main {
+    height: calc(100vh - 96px);
+    height: calc(100svh -96px);
+  }
+  article.container {
+    padding-block-start: 0;
+    grid-template-columns: 280px minmax(0, 1fr);
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .containerLeft {
+    position: sticky;
+    top: 0;
+  }
+  .section:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  .forecastCard .cardItem:not(:last-child) {
+    margin-block-end: 16px;
+  }
+  .highlightList {
+    grid-template-columns: 1fr 1fr;
+  }
+  .highlightCard:nth-child(-n + 2) {
+    grid-column: span 2;
+    height: 160px;
+  }
+  .highlightCard:nth-child(n + 3) {
+    height: 120px;
+  }
+  .highlights .m-icon {
+    font-size: 3.6rem;
+  }
+  .highlightCard.one .cardItem {
+    width: 25%;
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+  .sliderContainer {
+    min-width: 0 -24px;
+    border-bottom-left-radius: var(--radius-16);
+    border-top-left-radius: var(--radius-16);
+  }
+  .sliderList::before {
+    display: none;
+  }
+  .sliderList::after {
+    min-width: 12px;
+  }
+  .hourlyForecast .cardSm {
+    padding: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --heading: 8rem;
+    --title-2: 2rem;
+  }
+  .container {
+    padding: 40px;
+  }
+  .cardLg {
+    padding: 36px;
+  }
+  .cardSm {
+    padding: 24px;
+  }
+  .title-1 {
+    --title-1: 3.6rem;
+  }
+  .highlightCard.two .cardItem {
+    column-gap: 24px;
+  }
+
+  .logo img {
+    width: 200px;
+  }
+  .header {
+    position: relative;
+    height: 120px;
+    z-index: 4;
+  }
+  .header .iconBtn {
+    display: none;
+  }
+  .header .container {
+    padding-block: 0;
+    height: 100%;
+  }
+  .searchView,
+  .searchView.active {
+    all: unset;
+    display: block;
+    position: relative;
+    width: 500px;
+    animation: none;
+  }
+  .searchWrapper {
+    border-block-end: none;
+  }
+  .searchWrapper > .m-icon {
+    display: block;
+  }
+  .searchField,
+  .searchView .viewList {
+    background-color: var(--surface);
+  }
+  .searchField {
+    height: 56px;
+    border-radius: var(--radius-28);
+  }
+  .searchResult,
+  .searchView:not(:focus-within) .searchResult {
+    display: none;
+  }
+  .searchView:focus-within .searchResult.active {
+    display: block;
+  }
+  .searchView:has(.searchResult.active):focus-within .searchField {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .searchView .viewList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 360px;
+    border-radius: 0 0 var(--radius-28) var(--radius-28);
+    border-block-start: 1px solid var(--outline);
+    overflow-y: auto;
+    overflow-y: overlay;
+  }
+  .searchView .viewList:empty {
+    min-height: 120px;
+  }
+  .searchView .viewList::-webkit-scrollbar-button {
+    height: 20px;
+  }
+  .searchView:is(:hover, :has(.viewList):hover) {
+    filter: drop-shadow(var(--shadow-1));
+  }
+  .searchView:is(:focus-within, :has(.viewList):focus-within) {
+    filter: drop-shadow(var(--shadow-2));
+  }
+  main {
+    height: calc(100vh - 120px);
+    height: calc(100svh - 120px);
+  }
+  article.container {
+    grid-template-columns: 360px minmax(0, 1fr);
+    gap: 40px;
+  }
+  .currentWeather .weatherIcon {
+    width: 80px;
+  }
+  .forecastCard .title-2 {
+    --title-2: 2.2rem;
+  }
+  .highlightCard:nth-child(-n + 2) {
+    height: 200px;
+  }
+  .highlightCard:nth-child(n + 3) {
+    height: 150px;
+  }
+  .highlightCard .m-icon {
+    font-size: 4.8rem;
+  }
+  .sliderList {
+    gap: 16px;
+  }
+}
+@media (min-width: 1400px) {
+  .highlightList {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

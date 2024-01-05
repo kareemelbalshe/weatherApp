@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>weatherio</title>
+    <meta name="title" content="Weather" />
+    <meta
+      name="description"
+      content="weatherio is a weather app made by codewithkareem"
+    />
+    
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleaqis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleaqis.com/css2?family=Nunito+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./assets/js/app.js" type="module"></script>
+    <script src="./assets/js/route.js" type="module"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="#/weather?lat=30.033333&lon=31.233334" class="logo">
+          <img src="./assets/images/logo.png" width="364" height="58" alt="" />
+        </a>
+        <div class="searchView" data-searchView>
+          <div class="searchWrapper">
+            <input
+              type="search"
+              name="search"
+              id=""
+              class="searchField"
+              placeholder="Search city ..."
+              autocomplete="off"
+              data-searchField
+            />
+            <span class="m-icon leading-icon">search</span>
+            <button
+              class="iconBtn leading-icon hasState"
+              aria-label="close search"
+              data-searchToggler
+            >
+              <span class="m-icon">arrow_back</span>
+            </button>
+          </div>
+          <div class="searchResult" data-searchResult>
+            <ul class="viewList" data-searchList>
+              <li class="viewItem">
+                <span class="m-icon">location_on</span>
+                <div class="">
+                  <p class="itemTitle">Cairo</p>
+                  <p class="label-2 itemSubtitle">EG</p>
+                </div>
+                <a href="#/weather?lat=30.033333&lon=31.233334" class="itemLink hasState" data-searchToggler></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="headerActions">
+          <button
+            class="iconBtn hasState"
+            aria-label="open search"
+            data-searchToggler
+          >
+            <span class="m-icon icon">search</span>
+          </button>
+          <a
+            href="#/current-location"
+            class="btnPrimary hasState"
+            data-currentLocationBtn
+          >
+            <span class="m-icon">my_location</span>
+            <span class="span">Current Location</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <article class="container" data-container>
+        <div class="containerLeft">
+          <section
+            class="section currentWeather"
+            aria-label="current weather"
+            data-currentWeather
+          >
+          </section>
+          <section
+            class="section forecast"
+            aria-labelledby="forecast-label"
+            data-5-dayForecast
+          >
+          </section>
+        </div>
+        <div class="containerRight">
+          <section
+            class="section highlights"
+            aria-labelledby="highlightsLabel"
+            data-highlights
+          >
+          </section>
+
+          <section
+            class="section hourlyForecast"
+            aria-label="hourly forecast"
+            data-hourlyForecast
+          >
+          </section>
+
+          <footer class="footer">
+            <p class="body-3">
+              copyright 2024 KareemElbalshy. All Rights Reserved
+            </p>
+            <p class="body-3">
+              Powered By
+              <a
+                href="https://openweathermap.org/api"
+                title="free"
+                OpenWeather
+                Api
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="./assets/images/openweather.png"
+                  width="150"
+                  height="30"
+                  loading="lazy"
+                  alt="OpenWeather"
+                />
+              </a>
+            </p>
+          </footer>
+        </div>
+        <div class="loading" data-loading></div>
+      </article>
+    </main>
+
+    <section class="errorContent" data-errorContent>
+      <h2 class="heading">404</h2>
+      <p class="body-1">Page not found!</p>
+      <a href="#/weather?lat=30.033333&lon=31.233334" class="btnPrimary">
+        <span class="span">Go Home</span>
+      </a>
+    </section>
+  </body>
+</html>
